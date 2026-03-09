@@ -2,13 +2,15 @@
 
 Este projeto implementa um chatbot baseado em RAG (Retrieval-Augmented Generation) especializado na Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
 
-O sistema responde exclusivamente com base no texto da legislação, evitando alucinações e exibindo as fontes (artigo e página) utilizadas.
+O sistema responde com base em trechos recuperados da legislação, buscando reduzir alucinações e fornecer rastreabilidade das respostas por meio da citação explícita das fontes (artigo e página).
 
 ## Objetivo
 
-Explorar boas práticas de RAG confiável, com foco em:
-- Redução de alucinações
-- Rastreabilidade das respostas
+Explorar práticas de construção de sistemas RAG confiáveis aplicados a textos legais, com foco em:
+
+- Redução de respostas inventadas (alucinação)
+- Rastreabilidade das respostas por meio de citações
+- Uso de recuperação semântica para fundamentar as respostas
 - Base para avaliações sistemáticas futuras
 
 > **Nota 1:** Este projeto foi desenvolvido a partir do repositório [vitorccmanso/Rag-ChatBot](https://github.com/vitorccmanso/Rag-ChatBot), com adaptações para execução local e uso de modelos de embedding com pesos públicos,
@@ -138,15 +140,30 @@ O aplicativo estará disponível em `http://localhost:8501`
 - Não há avaliação automática estruturada.
 
 
-## Próximos Passos v2
+## Próximos Passos 
 
-- Implementar fallback com sugestão estruturada de reformulação de pergunta.
-- Implementar re-ranking para melhorar ordenação dos chunks.
-- Avaliar query rewriting para perguntas amplas.
-- Melhorar estruturação e propagação de metadata.
-- Criar conjunto fixo de testes.
-- Implementar LLM-as-a-Judge para avaliação automática.
-- Definir métricas de qualidade (presença do artigo correto, taxa de fallback).
+### Versão 2 — Avaliação e Diagnóstico
+
+Introdução de um processo estruturado de avaliação para analisar a qualidade das respostas.
+
+Inclui:
+- construção de um conjunto de perguntas de teste (gold set)
+- métricas quantitativas de qualidade
+- análise sistemática de padrões de erro
+- diagnóstico do comportamento do retrieval
+
+**Objetivo:** Identificar limitações empiricamente e priorizar melhorias baseadas em dados
+
+### Versão 3 — Interpretação Semântica de Perguntas
+
+Camada de NLU para interpretação estruturada de consultas jurídicas.
+
+Possíveis direções:
+- classificação de intenção da pergunta
+- extração de entidades normativas
+- normalização de termos jurídicos
+
+**Objetivo:** Melhorar alinhamento entre consulta e contexto recuperado
 
 **Desenvolvido como projeto de estudo em RAG confiável**
 
