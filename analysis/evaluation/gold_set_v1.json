@@ -1,0 +1,254 @@
+[
+    {
+        "id": 1,
+        "categoria": "conceitos",
+        "tipo_pergunta": "clara",
+        "pergunta": "A LGPD se aplica apenas a dados digitais ou também a documentos físicos e fichas em papel?",
+        "resposta_esperada": "A LGPD aplica-se ao tratamento de dados pessoais independentemente do meio utilizado, inclusive em suporte físico ou digital, conforme arts. 1º e 3º da LGPD."
+    },
+    {
+        "id": 2,
+        "categoria": "conceitos",
+        "tipo_pergunta": "clara",
+        "pergunta": "Dados de geolocalização são considerados dados pessoais segundo a LGPD?",
+        "resposta_esperada": "Dado pessoal é toda informação relacionada a pessoa natural identificada ou identificável, conforme art. 5º, I da LGPD. Dados de geolocalização podem se enquadrar nessa definição quando permitirem identificar o titular."
+    },
+    {
+        "id": 3,
+        "categoria": "conceitos",
+        "tipo_pergunta": "tecnica",
+        "pergunta": "Qual é a distinção jurídica entre as figuras do controlador e do operador quanto à tomada de decisões sobre o tratamento de dados pessoais?",
+        "resposta_esperada": "O controlador é quem toma as decisões referentes ao tratamento de dados pessoais, conforme art. 5º, VI da LGPD. O operador realiza o tratamento em nome do controlador e segundo suas instruções, nos termos do art. 5º, VII e art. 39."
+    },
+    {
+        "id": 4,
+        "categoria": "conceitos",
+        "tipo_pergunta": "tecnica",
+        "pergunta": "Como o princípio da necessidade deve orientar a coleta de dados para que o tratamento não seja considerado excessivo à luz do artigo 6º da LGPD?",
+        "resposta_esperada": "O tratamento deve limitar-se ao mínimo necessário para a realização de suas finalidades, conforme art. 6º, III da LGPD. A coleta deve abranger apenas dados pertinentes, proporcionais e não excessivos em relação à finalidade informada."
+    },
+    {
+        "id": 5,
+        "categoria": "conceitos",
+        "tipo_pergunta": "ambigua",
+        "pergunta": "A LGPD se aplica a uma empresa sediada nos Estados Unidos?",
+        "resposta_esperada": "A aplicação da LGPD independe do país da sede da empresa e depende das circunstâncias do tratamento, conforme art. 3º da LGPD. É necessário verificar se o tratamento ocorre no Brasil, se tem por objetivo a oferta de bens ou serviços a pessoas no território nacional ou se os dados foram coletados no Brasil."
+    },
+    {
+        "id": 6,
+        "categoria": "conceitos",
+        "tipo_pergunta": "incompleta",
+        "pergunta": "Uma pessoa física precisa cumprir a LGPD?",
+        "resposta_esperada": "A aplicação da LGPD depende da finalidade do tratamento. A lei não se aplica ao tratamento realizado por pessoa natural para fins exclusivamente particulares e não econômicos, conforme art. 4º, I da LGPD."
+    },
+    {
+        "id": 7,
+        "categoria": "bases_legais",
+        "tipo_pergunta": "clara",
+        "pergunta": "Uma loja online precisa pedir consentimento específico do cliente para usar o endereço dele na etiqueta de entrega ou o contrato de compra e venda já serve como base legal?",
+        "resposta_esperada": "O tratamento é permitido quando necessário para a execução de contrato do qual seja parte o titular, conforme art. 7º, V da LGPD. Nessa hipótese, não é exigido consentimento específico."
+    },
+    {
+        "id": 8,
+        "categoria": "bases_legais",
+        "tipo_pergunta": "clara",
+        "pergunta": "Uma empresa pode consultar o CPF de um consumidor em órgãos de proteção ao crédito sem pedir autorização prévia, segundo a LGPD?",
+        "resposta_esperada": "O tratamento de dados pessoais é permitido sem consentimento quando necessário para a proteção do crédito, conforme art. 7º, X da LGPD."
+    },
+    {
+        "id": 9,
+        "categoria": "bases_legais",
+        "tipo_pergunta": "tecnica",
+        "pergunta": "É juridicamente válido utilizar a base legal do legítimo interesse para justificar o tratamento de dados pessoais sensíveis, como biometria ou orientação religiosa?",
+        "resposta_esperada": "O tratamento de dados pessoais sensíveis somente pode ocorrer mediante consentimento específico ou nas hipóteses previstas no art. 11 da LGPD. O legítimo interesse não constitui base legal para dados pessoais sensíveis."
+    },
+    {
+        "id": 10,
+        "categoria": "bases_legais",
+        "tipo_pergunta": "tecnica",
+        "pergunta": "O tratamento de dados pessoais de crianças pode ser fundamentado no legítimo interesse do controlador ou exige consentimento específico e em destaque de um dos pais ou responsável?",
+        "resposta_esperada": "O tratamento de dados pessoais de crianças deve ser realizado com consentimento específico e em destaque de pelo menos um dos pais ou responsável legal, conforme art. 14, §1º da LGPD. Exceções são restritas às hipóteses do §3º do mesmo artigo."
+    },
+    {
+        "id": 11,
+        "categoria": "bases_legais",
+        "tipo_pergunta": "tecnica",
+        "pergunta": "É permitido o compartilhamento de dados pessoais sensíveis de saúde entre controladores com o objetivo de obter vantagem econômica fora das hipóteses previstas na LGPD?",
+        "resposta_esperada": "É vedada a comunicação ou o uso compartilhado de dados pessoais sensíveis referentes à saúde com objetivo de obter vantagem econômica, conforme art. 11, §4º da LGPD. As exceções limitam-se às hipóteses expressamente previstas na lei."
+    },
+    {
+        "id": 12,
+        "categoria": "bases_legais",
+        "tipo_pergunta": "ambigua",
+        "pergunta": "Se uma empresa coleta o e-mail de um cliente para enviar a nota fiscal, pode passar a enviar ofertas de marketing com base no legítimo interesse ou isso exigiria novo consentimento?",
+        "resposta_esperada": "A aplicação depende da base legal utilizada e do atendimento aos requisitos do legítimo interesse previstos nos arts. 7º, IX e 10 da LGPD. É necessário verificar se o novo tratamento respeita a finalidade e as legítimas expectativas do titular."
+    },
+    {
+        "id": 13,
+        "categoria": "bases_legais",
+        "tipo_pergunta": "ambigua",
+        "pergunta": "O uso de reconhecimento facial na entrada de um banco para evitar assaltos deve ser justificado pela proteção da vida ou pela prevenção à fraude prevista na LGPD?",
+        "resposta_esperada": "A aplicação depende da finalidade predominante do tratamento, conforme art. 11, II da LGPD. O tratamento de dados sensíveis pode ser fundamentado na proteção da vida ou na prevenção à fraude, conforme as hipóteses legais pertinentes."
+    },
+    {
+        "id": 14,
+        "categoria": "bases_legais",
+        "tipo_pergunta": "incompleta",
+        "pergunta": "Um pesquisador universitário está coletando dados de saúde para um estudo acadêmico. Ele pode realizar esse tratamento sem pedir consentimento?",
+        "resposta_esperada": "A dispensa de consentimento para estudos aplica-se quando realizada por órgão de pesquisa, conforme art. 11, II, c da LGPD. É necessário verificar se o pesquisador está vinculado a entidade que se enquadre na definição do art. 5º, XVIII."
+    },
+    {
+        "id": 15,
+        "categoria": "direitos",
+        "tipo_pergunta": "clara",
+        "pergunta": "Percebi que meu endereço está errado no cadastro de uma loja virtual. A LGPD me garante o direito de exigir a correção desses dados incompletos ou desatualizados?",
+        "resposta_esperada": "O titular tem direito de obter a correção de dados incompletos, inexatos ou desatualizados, conforme art. 18, III da LGPD."
+    },
+    {
+        "id": 16,
+        "categoria": "direitos",
+        "tipo_pergunta": "clara",
+        "pergunta": "Cancelei minha assinatura de um serviço online. Posso solicitar a exclusão definitiva dos meus dados pessoais com base na LGPD?",
+        "resposta_esperada": "O titular pode solicitar a eliminação dos dados tratados com consentimento, conforme art. 18, VI da LGPD. A conservação é admitida nas hipóteses previstas no art. 16."
+    },
+    {
+        "id": 17,
+        "categoria": "direitos",
+        "tipo_pergunta": "tecnica",
+        "pergunta": "Ao exercer o direito de portabilidade de dados para outro fornecedor de serviço, o titular pode exigir a transferência integral das informações ou o controlador pode limitar a transferência com fundamento na proteção de segredos comerciais e industriais?",
+        "resposta_esperada": "O direito à portabilidade deve observar os segredos comercial e industrial, conforme art. 18, V da LGPD. A autoridade nacional disciplinará o exercício desse direito."
+    },
+    {
+        "id": 18,
+        "categoria": "direitos",
+        "tipo_pergunta": "ambigua",
+        "pergunta": "Recebo propagandas de uma empresa sem ter dado consentimento explícito. Para interromper o envio, devo solicitar a revogação de consentimento ou exercer o direito de oposição ao tratamento?",
+        "resposta_esperada": "A aplicação depende da base legal utilizada para o tratamento. Se fundamentado no consentimento, aplica-se a revogação prevista no art. 18, IX; se fundamentado em hipótese de dispensa de consentimento, aplica-se o direito de oposição nos termos do art. 18, §2º da LGPD."
+    },
+    {
+        "id": 19,
+        "categoria": "direitos",
+        "tipo_pergunta": "ambigua",
+        "pergunta": "Solicitei ao meu antigo banco que apagasse todos os meus dados após encerrar a conta, mas eles afirmam que precisam manter registros por obrigação legal. Meu direito de eliminação prevalece nessa situação?",
+        "resposta_esperada": "A conservação de dados é autorizada para cumprimento de obrigação legal ou regulatória, conforme art. 16, I da LGPD. O direito de eliminação previsto no art. 18, VI não se aplica às hipóteses do art. 16."
+    },
+    {
+        "id": 20,
+        "categoria": "direitos",
+        "tipo_pergunta": "incompleta",
+        "pergunta": "Enviei um pedido para saber quais dados uma empresa possui sobre mim e ainda não recebi resposta. A empresa já está em atraso segundo a LGPD?",
+        "resposta_esperada": "Não é possível responder de forma definitiva sem identificar o formato da requisição. O prazo é imediato para o formato simplificado ou de até 15 dias para declaração clara e completa, conforme art. 19, I e II da LGPD."
+    },
+    {
+        "id": 21,
+        "categoria": "governanca",
+        "tipo_pergunta": "clara",
+        "pergunta": "A identidade e as informações de contato do Encarregado pelo tratamento de dados devem ficar disponíveis publicamente ou podem ser fornecidas apenas mediante solicitação?",
+        "resposta_esperada": "A identidade e as informações de contato do encarregado devem ser divulgadas publicamente, de forma clara e objetiva, conforme art. 41, §1º da LGPD."
+    },
+    {
+        "id": 22,
+        "categoria": "governanca",
+        "tipo_pergunta": "clara",
+        "pergunta": "Uma empresa pode se isentar de responsabilidade por vazamento de dados alegando que terceirizou o armazenamento para um serviço de nuvem contratado?",
+        "resposta_esperada": "O controlador ou operador que causar dano por violação à LGPD é obrigado a repará-lo, conforme art. 42. A responsabilidade somente é afastada nas hipóteses do art. 43."
+    },
+    {
+        "id": 23,
+        "categoria": "governanca",
+        "tipo_pergunta": "tecnica",
+        "pergunta": "Em que hipótese o operador responde solidariamente pelos danos causados ao titular, equiparando-se juridicamente ao controlador segundo a LGPD?",
+        "resposta_esperada": "O operador responde solidariamente quando descumprir a legislação de proteção de dados ou não seguir as instruções lícitas do controlador, conforme art. 42, §1º, I da LGPD."
+    },
+    {
+        "id": 24,
+        "categoria": "governanca",
+        "tipo_pergunta": "tecnica",
+        "pergunta": "O registro das operações de tratamento previsto na LGPD é uma obrigação dispensável quando o tratamento se baseia no consentimento ou é exigido especialmente em hipóteses de legítimo interesse?",
+        "resposta_esperada": "O controlador e o operador devem manter registro das operações de tratamento que realizarem, conforme art. 37 da LGPD. A lei destaca essa obrigação especialmente nas hipóteses de legítimo interesse."
+    },
+    {
+        "id": 25,
+        "categoria": "governanca",
+        "tipo_pergunta": "ambigua",
+        "pergunta": "Se uma agência contratada para enviar e-mails decide, por conta própria, usar a base de dados para finalidade diferente da instruída, quem pode ser responsabilizado pelo uso indevido: o contratante ou a agência?",
+        "resposta_esperada": "O operador que deixar de seguir as instruções lícitas do controlador responde solidariamente pelos danos causados, conforme art. 42, §1º, I da LGPD. Os controladores diretamente envolvidos também respondem solidariamente, nos termos do art. 42, §1º, II."
+    },
+    {
+        "id": 26,
+        "categoria": "governanca",
+        "tipo_pergunta": "incompleta",
+        "pergunta": "Ocorreu um incidente de segurança envolvendo dados pessoais na empresa. É obrigatório comunicar a ANPD?",
+        "resposta_esperada": "A comunicação à autoridade nacional é obrigatória quando o incidente puder acarretar risco ou dano relevante aos titulares, conforme art. 48 da LGPD. É necessário verificar a existência desse risco ou dano."
+    },
+    {
+        "id": 27,
+        "categoria": "sancoes",
+        "tipo_pergunta": "clara",
+        "pergunta": "Qual é o valor máximo que a ANPD pode aplicar como multa simples a uma empresa privada por infração à LGPD?",
+        "resposta_esperada": "A multa simples pode corresponder a até 2% do faturamento da pessoa jurídica de direito privado no Brasil no último exercício, excluídos os tributos, limitada a R$ 50.000.000,00 por infração, conforme art. 52, II da LGPD."
+    },
+    {
+        "id": 28,
+        "categoria": "sancoes",
+        "tipo_pergunta": "clara",
+        "pergunta": "As sanções de multa simples e multa diária previstas na LGPD podem ser aplicadas a órgãos públicos ou há vedação para penalidades pecuniárias nesses casos?",
+        "resposta_esperada": "As sanções de multa simples e multa diária não se aplicam a entidades e órgãos públicos, conforme art. 52, §3º da LGPD. Nessas hipóteses, aplicam-se apenas as demais sanções previstas na lei."
+    },
+    {
+        "id": 29,
+        "categoria": "sancoes",
+        "tipo_pergunta": "tecnica",
+        "pergunta": "A ANPD pode aplicar diretamente a sanção de proibição total do exercício de atividades relacionadas ao tratamento de dados ou a LGPD exige gradação prévia de penalidades?",
+        "resposta_esperada": "A proibição total do exercício de atividades relacionadas ao tratamento de dados somente pode ser aplicada após já ter sido imposta ao menos uma das sanções anteriores para o mesmo caso concreto, conforme art. 52, §6º, I da LGPD."
+    },
+    {
+        "id": 30,
+        "categoria": "sancoes",
+        "tipo_pergunta": "ambigua",
+        "pergunta": "Se uma empresa já foi multada por outro órgão por um vazamento de dados, a ANPD ainda pode aplicar nova sanção administrativa pelo mesmo fato?",
+        "resposta_esperada": "As sanções previstas na LGPD não substituem outras sanções administrativas, civis ou penais previstas em legislação específica, conforme art. 52, §2º. Compete exclusivamente à ANPD aplicar as sanções previstas na própria LGPD, nos termos do art. 55-K."
+    },
+    {
+        "id": 31,
+        "categoria": "sancoes",
+        "tipo_pergunta": "incompleta",
+        "pergunta": "Uma empresa cometeu uma infração grave à LGPD. Qual será o valor exato da multa considerando a alíquota de 2% prevista na lei?",
+        "resposta_esperada": "Não é possível determinar o valor exato sem o faturamento da empresa no último exercício, excluídos os tributos. A multa pode ser de até 2% do faturamento, limitada a R$ 50.000.000,00 por infração, conforme art. 52, II da LGPD."
+    },
+    {
+        "id": 32,
+        "categoria": "fora_de_escopo",
+        "tipo_pergunta": "juridica_relacionada",
+        "pergunta": "A LGPD regula a cobrança de impostos federais?",
+        "resposta_esperada": "Pergunta fora do escopo da LGPD. A lei trata da proteção de dados pessoais e não regula matéria tributária."
+    },
+    {
+        "id": 33,
+        "categoria": "fora_de_escopo",
+        "tipo_pergunta": "juridica_relacionada",
+        "pergunta": "A LGPD define regras sobre contratos de trabalho?",
+        "resposta_esperada": "Pergunta fora do escopo da LGPD. A lei regula o tratamento de dados pessoais, não normas gerais de direito do trabalho."
+    },
+    {
+        "id": 34,
+        "categoria": "fora_de_escopo",
+        "tipo_pergunta": "ambigua_juridica",
+        "pergunta": "A LGPD pode ser usada para anular uma dívida?",
+        "resposta_esperada": "Pergunta fora do escopo da LGPD. A lei trata de proteção de dados pessoais e não regula validade de dívidas ou obrigações financeiras."
+    },
+    {
+        "id": 35,
+        "categoria": "fora_de_escopo",
+        "tipo_pergunta": "tema_publico",
+        "pergunta": "A LGPD estabelece regras para campanhas eleitorais?",
+        "resposta_esperada": "Pergunta fora do escopo normativo principal. A LGPD trata do tratamento de dados pessoais, não regula diretamente normas eleitorais."
+    },
+    {
+        "id": 36,
+        "categoria": "fora_de_escopo",
+        "tipo_pergunta": "tecnologia_geral",
+        "pergunta": "A LGPD obriga empresas a utilizarem criptografia em seus sistemas?",
+        "resposta_esperada": "Pergunta fora do escopo específico. A LGPD estabelece princípios e deveres de segurança, mas não impõe tecnologia específica como criptografia obrigatória."
+    }
+]
