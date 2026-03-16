@@ -142,28 +142,20 @@ O aplicativo estará disponível em `http://localhost:8501`
 
 ## Próximos Passos 
 
-### Versão 2 — Avaliação e Diagnóstico
+## Versão 2 — Avaliação e Diagnóstico (concluída)
 
-Introdução de um processo estruturado de avaliação para analisar a qualidade das respostas.
+Introdução de um processo estruturado de avaliação para analisar a qualidade das respostas do sistema.
 
-Inclui:
+Incluiu:
+
 - construção de um conjunto de perguntas de teste (gold set)
 - métricas quantitativas de qualidade
 - análise sistemática de padrões de erro
-- diagnóstico do comportamento do retrieval
+- diagnóstico do desempenho do pipeline RAG (retrieval e geração)
 
-**Objetivo:** Identificar limitações empiricamente e priorizar melhorias baseadas em dados
+Objetivo: identificar limitações empiricamente e orientar melhorias baseadas em dados.
 
-### Versão 3 — Interpretação Semântica de Perguntas
-
-Camada de NLU para interpretação estruturada de consultas jurídicas.
-
-Possíveis direções:
-- classificação de intenção da pergunta
-- extração de entidades normativas
-- normalização de termos jurídicos
-
-**Objetivo:** Melhorar alinhamento entre consulta e contexto recuperado
+Resultados detalhados disponíveis na versão V2 do projeto.
 
 **Desenvolvido como projeto de estudo em RAG confiável**
 
