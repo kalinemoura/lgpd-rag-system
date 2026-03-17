@@ -4,38 +4,108 @@ Este projeto implementa um chatbot baseado em RAG (Retrieval-Augmented Generatio
 
 O sistema responde com base em trechos recuperados da legislação, buscando reduzir alucinações e fornecer rastreabilidade das respostas por meio da citação explícita das fontes (artigo e página).
 
-## Objetivo
 
+<<<<<<< HEAD
 Explorar práticas de construção de sistemas RAG confiáveis aplicados a textos legais, com foco em:
 
 - Redução de respostas inventadas (alucinação)
 - Rastreabilidade das respostas por meio de citações
 - Uso de recuperação semântica para fundamentar as respostas
 - Base para avaliações sistemáticas futuras
+=======
+## Objetivo do Projeto
+
+Investigar e desenvolver um sistema RAG confiável aplicado a textos legais, evoluindo progressivamente por meio de versões experimentais e avaliação empírica.
+
+- Redução de alucinações
+- Rastreabilidade via citações explícitas
+- Recuperação semântica fundamentada
+- Avaliação rigorosa e melhorias baseadas em dados
+- Identificação sistemática de limitações
+>>>>>>> v2-evaluation
 
 > **Nota 1:** Este projeto foi desenvolvido a partir do repositório [vitorccmanso/Rag-ChatBot](https://github.com/vitorccmanso/Rag-ChatBot), com adaptações para execução local e uso de modelos de embedding com pesos públicos,
 > executáveis localmente.
 
 > **Nota 2:** Nesta fase, optou-se por manter o texto integral dos documentos, incluindo notas editoriais e trechos revogados, a fim de estabelecer um baseline realista para avaliação do sistema. A limpeza e normalização do texto são consideradas como trabalhos futuros.
 
-## Interface
 
-![RAG LGPD Chatbot](Images/app.interface.png)
+## Roadmap do Projeto
 
-## Funcionalidades
+### Versão 1 — Implementação (Concluída)
 
-- Ingestão e processamento automático de PDF jurídico (base fixa – LGPD)
-- Geração de embeddings e indexação vetorial persistente
-- Busca semântica (retrieval top-k)
-- Respostas geradas exclusivamente com base no contexto recuperado
-- Exibição de citações (documento, artigo e página)
-- Controle de fallback para evitar alucinações
+Sistema RAG jurídico funcional com pipeline completo.
+
+**Principais features:**
+- Chunking otimizado para textos jurídicos (86% dos artigos preservados íntegros)
+- Embeddings locais (`all-MiniLM-L6-v2`)
+- ChromaDB para indexação vetorial
+- Retrieval semântico (top_k = 10)
+- Geração via GPT-4o-mini com prompt restritivo
+- Citação automática (artigo + página)
+- Fallback controlado
+
+**Limitações conhecidas:**
+- Fallback não solicita reformulação
+- Similaridade semântica pode falhar em artigos definidores
+- Chunk pode não herdar metadata em alguns casos
+- Sem re-ranking ou query rewriting
+
+### Versão 2 — Avaliação e Diagnóstico (Concluída)
+
+Avaliação empírica do sistema da V1 utilizando um gold set de 36 perguntas anotadas manualmente.
+
+#### Metodologia
+
+Para cada consulta foram registrados:
+- Resposta gerada pelo sistema
+- Artigos legais esperados
+- Trechos recuperados pelo mecanismo de busca
+- Avaliação manual da qualidade
+- Métricas automáticas
+- Classificação do comportamento (resposta direta ou fallback)
+
+#### Resultados - Avaliação do Retrieval
+
+Considerando apenas perguntas in-scope (com artigo esperado):
+
+**Zero artigos recuperados:** 45,2% (Crítico)
+- Quase metade das queries falha completamente
+
+**Pelo menos 1 artigo:** 54,8% (Moderado)
+- Maioria recupera algum contexto relevante
+
+**Todos artigos esperados:** 51,6% (Moderado)
+- Metade consegue cobertura completa
+
+**Padrão identificado:** Comportamento polarizado (tudo ou nada) - quando acerta, acerta bem; quando erra, quando erra, falha completamente.
+
+**Conclusão:** Retrieval é o principal gargalo do sistema.
+
+#### Pontos Fortes Identificados
+
+- Sistema reconhece adequadamente perguntas fora de escopo
+- Zero alucinações detectadas (todas respostas baseadas em contexto)
+- LLM-as-judge teve melhor alinhamento com avaliação humana que similaridade semântica
+
+#### Limitações Identificadas
+
+- Alta taxa de falha na recuperação de contexto
+- Fallback acionado com frequência excessiva
+- Ausência de sugestões de reformulação
+- Muitas respostas incorretas decorrem de contexto inadequado/insuficiente
+
+#### Análise detalhada disponível em:
+
+- [Notebook de análise](./analysis/evaluation/analyse_results_v2.ipynb)
+- [Dados da avaliação](./analysis/evaluation/avaliacao_v2_final.xlsx)
+
 
 ## Arquitetura
 
 Pipeline do sistema:
 
-1. Ingestão do PDF da LGPD.
+1. Ingestão offline do texto da LGPD (base normativa fixa).
 2. Chunking com `RecursiveCharacterTextSplitter` 
 3. Geração de embeddings (`all-MiniLM-L6-v2`)
 4. Armazenamento vetorial com ChromaDB
@@ -44,46 +114,18 @@ Pipeline do sistema:
 7. Exibição de citações (artigo + página)
 8. Fallback controlado quando não há contexto suficiente
 
-## Decisões Técnicas
 
-### Chunking
-- **Estratégia:** `RecursiveCharacterTextSplitter`
-- **Parâmetros:**
-  - `chunk_size`: 2000 caracteres
-  - `chunk_overlap`: 300 caracteres
-  - Baseado na análise estatística dos artigos da LGPD
-  - Aproximadamente 86% dos artigos permanecem íntegros em um único chunk
-- **Objetivo:** Preservar contexto jurídico
+## Funcionalidades
 
-### Embeddings
-- **Modelo:** `sentence-transformers/all-MiniLM-L6-v2`
-- **Vantagens:**
-  - Execução local (sem custos de API)
-  - Boa performance para recuperação semântica e adequado para v1
-  - Leve e eficiente
+- Perguntas em linguagem natural sobre LGPD
+- Respostas fundamentadas exclusivamente no texto legal
+- Citações explícitas das fontes (artigo e página)
+- Detecção automática de perguntas fora de escopo
+- Controle de alucinação via fallback
+- Interface de chat simples para consulta jurídica
 
-### Retrieval
-- `top_k = 10` para priorizar recall em contexto jurídico, onde a resposta pode estar distribuída em múltiplos dispositivos legais
-- Re-ranking planejado para versão futura
 
-### Modelo de Linguagem (LLM)
-- **Modelo:** OpenAI GPT-4o-mini
-- **Temperatura:** 0.2 (para reduzir variabilidade)
-- **Prompt:** Instruções restritivas para responder apenas com base no contexto recuperado
-
-### Vector Store
-- **Banco:** ChromaDB
-- **Persistência:** Local em disco
-- **Benefício:** Reuso automático do índice entre execuções
-
-### Camada de Confiabilidade
-Exibição de:
-- Documento
-- Artigo
-- Página
-- Formatação amigável para o usuário
-
-## Como Executar
+## Como Executar (V1)
 
 ### Pré-requisitos
 
@@ -94,8 +136,8 @@ Exibição de:
 
 1. Clone o repositório:
 ```bash
-git clone <seu-repositorio>
-cd <nome-do-projeto>
+git clone 
+cd 
 ```
 
 2. Instale as dependências:
@@ -116,46 +158,19 @@ Execute o aplicativo Streamlit:
 ```bash
 streamlit run app/app.py
 ```
-
 O aplicativo estará disponível em `http://localhost:8501`
+
 
 ## Estrutura do Projeto
 ```
 .
-├── app/
-│   └── app.py             
-├── requirements.txt        
-├── .env                    
-└── README.md              
+├── app/                    # V1: Aplicação Streamlit
+│   └── app.py
+├── analysis/               # V2: Avaliação
+│   └── evaluation/
+│       ├── analyse_results_v2.ipynb
+│       └── avaliacao_v2_final.xlsx
+├── requirements.txt
+├── .env.example
+└── README.md              # Este arquivo
 ```
-
-## Limitações Conhecidas
-
-- O fallback não solicita reformulação da pergunta; optou-se por resposta direta para priorizar controle de alucinação na v1
-- Similaridade semântica pode não ranquear corretamente artigos definidores (ex: Art. 5º).
-- Chunk pode não herdar metadata quando começa em inciso.
-- Perguntas amplas podem acionar fallback.
-- Não há re-ranking.
-- Não há query rewriting.
-- Não há avaliação automática estruturada.
-
-
-## Próximos Passos 
-
-## Versão 2 — Avaliação e Diagnóstico (concluída)
-
-Introdução de um processo estruturado de avaliação para analisar a qualidade das respostas do sistema.
-
-Incluiu:
-
-- construção de um conjunto de perguntas de teste (gold set)
-- métricas quantitativas de qualidade
-- análise sistemática de padrões de erro
-- diagnóstico do desempenho do pipeline RAG (retrieval e geração)
-
-Objetivo: identificar limitações empiricamente e orientar melhorias baseadas em dados.
-
-Resultados detalhados disponíveis na versão V2 do projeto.
-
-**Desenvolvido como projeto de estudo em RAG confiável**
-

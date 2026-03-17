@@ -9,7 +9,7 @@ from langchain.chains import RetrievalQA
 from dotenv import load_dotenv
 import os
 
-DEBUG_RETRIEVAL = True
+DEBUG_RETRIEVAL = False
 
 
 def get_context_retriever_chain(vectordb):
@@ -71,12 +71,12 @@ def get_response(question, chat_history, vectordb):
         retriever = vectordb.as_retriever(search_kwargs={"k": 10})
         docs = retriever.get_relevant_documents(question)
 
-        print("\n=== DEBUG RETRIEVAL ===")
-        for i, doc in enumerate(docs):
-            print(f"\nDoc {i}")
-            print("Page:", doc.metadata.get("page"))
-            print("Source:", doc.metadata.get("source"))
-            print("Preview:", doc.page_content[:300])
+        # print("\n=== DEBUG RETRIEVAL ===")
+        # for i, doc in enumerate(docs):
+        #     print(f"\nDoc {i}")
+        #     print("Page:", doc.metadata.get("page"))
+        #     print("Source:", doc.metadata.get("source"))
+        #     print("Preview:", doc.page_content[:300])
 
     # Executa chain
     try:
