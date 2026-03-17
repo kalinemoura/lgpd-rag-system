@@ -5,14 +5,6 @@ Este projeto implementa um chatbot baseado em RAG (Retrieval-Augmented Generatio
 O sistema responde com base em trechos recuperados da legislação, buscando reduzir alucinações e fornecer rastreabilidade das respostas por meio da citação explícita das fontes (artigo e página).
 
 
-<<<<<<< HEAD
-Explorar práticas de construção de sistemas RAG confiáveis aplicados a textos legais, com foco em:
-
-- Redução de respostas inventadas (alucinação)
-- Rastreabilidade das respostas por meio de citações
-- Uso de recuperação semântica para fundamentar as respostas
-- Base para avaliações sistemáticas futuras
-=======
 ## Objetivo do Projeto
 
 Investigar e desenvolver um sistema RAG confiável aplicado a textos legais, evoluindo progressivamente por meio de versões experimentais e avaliação empírica.
@@ -22,7 +14,6 @@ Investigar e desenvolver um sistema RAG confiável aplicado a textos legais, evo
 - Recuperação semântica fundamentada
 - Avaliação rigorosa e melhorias baseadas em dados
 - Identificação sistemática de limitações
->>>>>>> v2-evaluation
 
 > **Nota 1:** Este projeto foi desenvolvido a partir do repositório [vitorccmanso/Rag-ChatBot](https://github.com/vitorccmanso/Rag-ChatBot), com adaptações para execução local e uso de modelos de embedding com pesos públicos,
 > executáveis localmente.
