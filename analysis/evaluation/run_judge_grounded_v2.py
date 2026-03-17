@@ -11,8 +11,7 @@ load_dotenv()
 # =============================
 
 INPUT_PATH = "rag_chatbot/analysis/evaluation/execucao_rag_v2_com_judge1.xlsx"
-# OUTPUT_PATH = "rag_chatbot/analysis/evaluation/avaliacao_v2_final.xlsx"
-OUTPUT_PATH = "rag_chatbot/analysis/evaluation/avaliacao_v2_grounded_corrigido.xlsx"
+OUTPUT_PATH = "rag_chatbot/analysis/evaluation/avaliacao_v2_final.xlsx"
 
 llm_judge = ChatOpenAI(model="gpt-4o-mini", temperature=0)
 

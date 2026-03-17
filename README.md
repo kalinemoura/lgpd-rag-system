@@ -1,152 +1,141 @@
-# Consultor LGPD – RAG Jurídico
+# Consultor LGPD – RAG Jurídico (V2: Avaliação e Diagnóstico)
 
-Este projeto implementa um chatbot baseado em RAG (Retrieval-Augmented Generation) especializado na Lei Geral de Proteção de Dados (Lei nº 13.709/2018).
+Esta versão avalia sistematicamente o desempenho do sistema RAG desenvolvido 
+na V1, com foco em identificar limitações, medir qualidade objetivamente, e 
+diagnosticar o comportamento do retrieval.
 
-O sistema responde exclusivamente com base no texto da legislação, evitando alucinações e exibindo as fontes (artigo e página) utilizadas.
 
 ## Objetivo
 
-Explorar boas práticas de RAG confiável, com foco em:
-- Redução de alucinações
-- Rastreabilidade das respostas
-- Base para avaliações sistemáticas futuras
+Diagnosticar empiricamente onde e por que o sistema falha, estabelecendo 
+baseline quantitativo para orientar melhorias futuras.
 
-> **Nota 1:** Este projeto foi desenvolvido a partir do repositório [vitorccmanso/Rag-ChatBot](https://github.com/vitorccmanso/Rag-ChatBot), com adaptações para execução local e uso de modelos de embedding com pesos públicos,
-> executáveis localmente.
 
-> **Nota 2:** Nesta fase, optou-se por manter o texto integral dos documentos, incluindo notas editoriais e trechos revogados, a fim de estabelecer um baseline realista para avaliação do sistema. A limpeza e normalização do texto são consideradas como trabalhos futuros.
+## Metodologia 
 
-## Interface
+A avaliação foi conduzida utilizando um gold set de 36 perguntas anotadas 
+manualmente, cobrindo diferentes categorias:
 
-![RAG LGPD Chatbot](Images/app.interface.png)
+- conceitos legais
+- bases legais
+- direitos do titular
+- obrigações do controlador
+- sanções administrativas
+- perguntas ambíguas
+- perguntas incompletas
+- perguntas fora de escopo
 
-## Funcionalidades
+Para cada consulta foram registrados:
 
-- Ingestão e processamento automático de PDF jurídico (base fixa – LGPD)
-- Geração de embeddings e indexação vetorial persistente
-- Busca semântica (retrieval top-k)
-- Respostas geradas exclusivamente com base no contexto recuperado
-- Exibição de citações (documento, artigo e página)
-- Controle de fallback para evitar alucinações
+- resposta gerada pelo sistema
+- artigos legais esperados (ground truth)
+- trechos (chunks) recuperados pelo mecanismo de busca
+- avaliação manual da qualidade da resposta
+- métricas automáticas de avaliação
+- classificação do comportamento do sistema (resposta direta ou fallback)
 
-## Arquitetura
 
-Pipeline do sistema:
+## Sistema Avaliado
 
-1. Ingestão do PDF da LGPD.
-2. Chunking com `RecursiveCharacterTextSplitter` 
-3. Geração de embeddings (`all-MiniLM-L6-v2`)
-4. Armazenamento vetorial com ChromaDB
-5. Retrieval semântico (top-k)
-6. Geração de resposta via LLM
-7. Exibição de citações (artigo + página)
-8. Fallback controlado quando não há contexto suficiente
+A avaliação foi realizada sobre o pipeline desenvolvido na Versão 1, composto por:
 
-## Decisões Técnicas
+- Ingestão do PDF da LGPD
+- Chunking com `RecursiveCharacterTextSplitter`
+- Embeddings `all-MiniLM-L6-v2`
+- Indexação vetorial com ChromaDB
+- Retrieval semântico (top-k = 10)
+- Geração via GPT-4o-mini com prompt restritivo
+- Mecanismo de fallback controlado
 
-### Chunking
-- **Estratégia:** `RecursiveCharacterTextSplitter`
-- **Parâmetros:**
-  - `chunk_size`: 2000 caracteres
-  - `chunk_overlap`: 300 caracteres
-  - Baseado na análise estatística dos artigos da LGPD
-  - Aproximadamente 86% dos artigos permanecem íntegros em um único chunk
-- **Objetivo:** Preservar contexto jurídico
 
-### Embeddings
-- **Modelo:** `sentence-transformers/all-MiniLM-L6-v2`
-- **Vantagens:**
-  - Execução local (sem custos de API)
-  - Boa performance para recuperação semântica e adequado para v1
-  - Leve e eficiente
+## Avaliação do Retrieval
 
-### Retrieval
-- `top_k = 10` para priorizar recall em contexto jurídico, onde a resposta pode estar distribuída em múltiplos dispositivos legais
-- Re-ranking planejado para versão futura
+Considerando apenas perguntas in-scope (com artigo esperado):
 
-### Modelo de Linguagem (LLM)
-- **Modelo:** OpenAI GPT-4o-mini
-- **Temperatura:** 0.2 (para reduzir variabilidade)
-- **Prompt:** Instruções restritivas para responder apenas com base no contexto recuperado
+**Zero artigos recuperados:** 45,2% (Crítico)
+- Quase metade das queries falha completamente
 
-### Vector Store
-- **Banco:** ChromaDB
-- **Persistência:** Local em disco
-- **Benefício:** Reuso automático do índice entre execuções
+**Pelo menos 1 artigo:** 54,8% (Moderado)
+- Maioria recupera algum contexto relevante
 
-### Camada de Confiabilidade
-Exibição de:
-- Documento
-- Artigo
-- Página
-- Formatação amigável para o usuário
+**Todos artigos esperados:** 51,6% (Moderado)
+- Metade consegue cobertura completa
 
-## Como Executar
+**Padrão:** Comportamento polarizado (tudo ou nada) - quando acerta, acerta bem; quando erra, erra completamente.
 
-### Pré-requisitos
+**Conclusão:** Retrieval é o principal gargalo do sistema.
 
-- Python 3.10 ou superior
-- Chave de API da OpenAI
 
-### Instalação
+## Avaliação Completa
 
-1. Clone o repositório:
-```bash
-git clone <seu-repositorio>
-cd <nome-do-projeto>
+A avaliação detalhada do sistema foi realizada por meio de um notebook dedicado, que documenta a metodologia, as métricas utilizadas e a análise dos resultados.
+
+Notebook:
+
+[analyse_results_v2.ipynb](analysis/evaluation/analyse_results_v2.ipynb)
+
+Dados utilizados na avaliação (gold set e anotações):
+
+[avaliacao_v2_final.xlsx](analysis/evaluation/avaliacao_v2_final.xlsx)
+
+
+## Resultados e Observações
+
+### Pontos Fortes Identificados
+- Sistema reconhece adequadamente perguntas fora de escopo
+- Zero alucinações detectadas (todas respostas baseadas em contexto)
+- LLM-as-judge teve melhor alinhamento com avaliação humana que similaridade semântica
+
+### Limitações Identificadas
+- **Gargalo crítico no retrieval:** 45,2% das queries não recuperam artigo esperado
+- Fallback acionado com frequência excessiva e nem sempre apropriado
+- Fallback não sugere reformulação (limita UX)
+- Muitas respostas incorretas decorrem de contexto inadequado/insuficiente
+
+### Insights Técnicos
+- Retrieval tem comportamento polarizado (tudo ou nada)
+- Rotulagem inconsistente de chunks dificulta análise precisa
+- Similaridade semântica não é boa proxy para qualidade jurídica
+
+
+## Limitações da Avaliação
+
+- Em alguns casos, inconsistências na rotulagem automática dos chunks dificultaram a identificação precisa do artigo recuperado.
+- Foi utilizada uma verificação manual (artigo_real_recuperado) para mitigar esse problema.
+- Pequenas imprecisões residuais podem afetar marginalmente as métricas de retrieval.
+
+
+## Estrutura da Avaliação
+
+```
+analysis/
+└── evaluation/
+    ├── analyse_results_v2.ipynb
+    └── avaliacao_v2_final.xlsx
+
 ```
 
-2. Instale as dependências:
-```bash
-pip install -r requirements.txt
-```
+# Próximos Passos
 
-3. Configure a chave da API da OpenAI:
+## Versão 3 — Otimização do Retrieval
 
-Crie um arquivo `.env` na raiz do projeto:
-```env
-OPENAI_API_KEY=sua_chave_aqui
-```
+Com base nos resultados obtidos, a próxima etapa do projeto foca na melhoria do mecanismo de recuperação de informações.
 
-### Execução
+Principais direções:
 
-Execute o aplicativo Streamlit:
-```bash
-streamlit run app/app.py
-```
+- melhorias no mecanismo de retrieval
+- aprimoramento do mecanismo de fallback, incluindo sugestões de reformulação de perguntas
+- melhoria na rotulagem dos chunks
+- embeddings mais adequados ao domínio jurídico
+- query rewriting
+- reranking dos resultados
+- possíveis abordagens híbridas de busca
 
-O aplicativo estará disponível em `http://localhost:8501`
-
-## Estrutura do Projeto
-```
-.
-├── app/
-│   └── app.py             
-├── requirements.txt        
-├── .env                    
-└── README.md              
-```
-
-## Limitações Conhecidas
-
-- O fallback não solicita reformulação da pergunta; optou-se por resposta direta para priorizar controle de alucinação na v1
-- Similaridade semântica pode não ranquear corretamente artigos definidores (ex: Art. 5º).
-- Chunk pode não herdar metadata quando começa em inciso.
-- Perguntas amplas podem acionar fallback.
-- Não há re-ranking.
-- Não há query rewriting.
-- Não há avaliação automática estruturada.
+**Objetivo:** Aumentar a taxa de recuperação de pelo menos 1 artigo relevante 
+de 54,8% para >80%, reduzindo falhas críticas (zero artigos) de 45,2% para <20%.
 
 
-## Próximos Passos v2
 
-- Implementar fallback com sugestão estruturada de reformulação de pergunta.
-- Implementar re-ranking para melhorar ordenação dos chunks.
-- Avaliar query rewriting para perguntas amplas.
-- Melhorar estruturação e propagação de metadata.
-- Criar conjunto fixo de testes.
-- Implementar LLM-as-a-Judge para avaliação automática.
-- Definir métricas de qualidade (presença do artigo correto, taxa de fallback).
 
-**Desenvolvido como projeto de estudo em RAG confiável**
+
 
