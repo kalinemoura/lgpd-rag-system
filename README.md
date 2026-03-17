@@ -130,6 +130,7 @@ Principais direções:
 - query rewriting
 - reranking dos resultados
 - possíveis abordagens híbridas de busca
+- limpeza e normalização do texto da base normativa (remoção de trechos revogados e notas editoriais)
 
 **Objetivo:** Aumentar a taxa de recuperação de pelo menos 1 artigo relevante 
 de 54,8% para >80%, reduzindo falhas críticas (zero artigos) de 45,2% para <20%.
