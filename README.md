@@ -95,7 +95,7 @@ Dados utilizados na avaliação (gold set e anotações):
 ### Insights Técnicos
 - Retrieval tem comportamento polarizado (tudo ou nada)
 - Rotulagem inconsistente de chunks dificulta análise precisa
-- Similaridade semântica não é boa proxy para qualidade jurídica
+- Similaridade semântica não garante qualidade jurídica
 
 
 ## Limitações da Avaliação
