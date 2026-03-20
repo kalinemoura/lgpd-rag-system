@@ -15,8 +15,8 @@ Investigar e desenvolver um sistema RAG confiável aplicado a textos legais, des
 - Avaliação rigorosa e melhorias baseadas em dados
 - Identificação sistemática de limitações
 
-> **Nota 1:** Este projeto foi desenvolvido a partir do repositório [vitorccmanso/Rag-ChatBot](https://github.com/vitorccmanso/Rag-ChatBot), com adaptações para execução local e uso de modelos de embedding com pesos públicos,
-> executáveis localmente.
+> **Nota 1:** Este projeto foi desenvolvido a partir do repositório [vitorccmanso/Rag-ChatBot](https://github.com/vitorccmanso/Rag-ChatBot), originalmente genérico para ingestão de documentos diversos.  
+> Nesta versão, o sistema foi adaptado e especializado para o domínio jurídico da LGPD, com base normativa fixa, execução local e uso de modelos de embedding públicos.
 
 > **Nota 2:** Nesta fase, optou-se por manter o texto integral dos documentos, incluindo notas editoriais e trechos revogados, a fim de estabelecer um baseline realista para avaliação do sistema. A limpeza e normalização do texto são consideradas como trabalhos futuros.
 
