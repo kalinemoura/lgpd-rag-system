@@ -163,7 +163,7 @@ O aplicativo estará disponível em `http://localhost:8501`
 │       └── avaliacao_v2_final.xlsx
 ├── requirements.txt
 ├── .env.example
-└── README.md              # Este arquivo
+└── README.md             
 ```
 
 ## Próximos passos: Otimização do Retrieval
