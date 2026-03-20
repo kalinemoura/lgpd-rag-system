@@ -173,7 +173,7 @@ Com base no diagnóstico da V2, a próxima fase focará em corrigir o principal 
 Principais direções:
 
 - Migração de RetrievalQA para LCEL
-- Tratamento de chunks multi-artigo com rotulagem de todos os artigos presentes no trecho
+- Correção do parser de metadata para chunks multi-artigo
 - Substituição do modelo de embedding por alternativa PT-BR com viés jurídico
 - Query rewriting para aproximar a pergunta do vocabulário técnico-jurídico da LGPD
 - Busca híbrida combinando recuperação semântica
