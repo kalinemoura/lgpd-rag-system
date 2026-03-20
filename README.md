@@ -165,3 +165,17 @@ O aplicativo estará disponível em `http://localhost:8501`
 ├── .env.example
 └── README.md              # Este arquivo
 ```
+
+## Próximos passos: Otimização do Retrieval
+
+Com base no diagnóstico da V2, a próxima fase focará em corrigir o principal gargalo identificado: a falha de recuperação em 45,2% das queries.
+
+Principais direções:
+
+- Migração de RetrievalQA para LCEL
+- Tratamento de chunks multi-artigo com rotulagem de todos os artigos presentes no trecho
+- Substituição do modelo de embedding por alternativa PT-BR com viés jurídico
+- Query rewriting para aproximar a pergunta do vocabulário técnico-jurídico da LGPD
+- Busca híbrida combinando recuperação semântica
+- Reranking dos chunks recuperados via cross-encoder
+- Fallback com sugestão de reformulação da pergunta
