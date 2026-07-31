@@ -89,7 +89,7 @@ def get_response(question, chat_history, vectordb):
     answer = response["result"]
     source_docs = response["source_documents"]
 
-    # DEBUG – Inspeção da ordenação semântica do top_k
+    # debugg – Inspeção da ordenação semântica do top_k
     print("\n=== DEBUG ORDEM SEMÂNTICA ===")
     for i, doc in enumerate(source_docs):
         print(i, doc.metadata.get("article"))
@@ -105,11 +105,11 @@ def get_response(question, chat_history, vectordb):
 
     is_fallback = any(marker in answer.lower() for marker in fallback_markers)
 
-    # Se for fallback → Nao exibir fontes
+    # Se for fallback → nao exibir fontes
     if is_fallback:
         return answer, source_docs
 
-    # Caso contrário → formatar fontes normalmente
+    # Caso contrario → formatar fontes normalmente
     formatted_sources = []
 
     for doc in source_docs[:5]:
@@ -135,10 +135,21 @@ def get_response(question, chat_history, vectordb):
     return final_answer, source_docs
 
 
-def chat(chat_history, vectordb):
+def chat(chat_history, vectordb, mode="v2", graph=None):
+    """
+    parametros:
+        mode: "v2" usa o pipeline RetrievalQA clássico (get_response).
+              "v3" usa o pipeline GraphRAG (busca vetorial + expansão no grafo).
+        graph: grafo NetworkX carregado, obrigatório quando mode="v3".
+    """
     user_query = st.chat_input("Faça uma pergunta:")
     if user_query:
-        response, context = get_response(user_query, chat_history, vectordb)
+        if mode == "v3":
+            from utils.chatbot_graphrag import get_response_graphrag
+
+            response, _ = get_response_graphrag(user_query, vectordb, graph)
+        else:
+            response, context = get_response(user_query, chat_history, vectordb)
 
         chat_history = chat_history + [
             HumanMessage(content=user_query),

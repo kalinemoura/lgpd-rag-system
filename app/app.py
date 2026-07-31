@@ -163,12 +163,49 @@ class ChatApp:
             else:
                 st.warning("⚠️ Nenhum documento encontrado em /docs")
 
-        if st.session_state.vectordb is not None:
-            st.session_state.chat_history = chat(
-                st.session_state.chat_history, st.session_state.vectordb
+            st.markdown("---")
+            st.markdown("### ⚙️ Modo de resposta")
+            mode_label = st.radio(
+                "Pipeline",
+                options=["V2 — RAG clássico (vetorial)", "V3 — GraphRAG"],
+                label_visibility="collapsed",
             )
-        else:
+            mode = "v3" if mode_label.startswith("V3") else "v2"
+
+            graph = None
+            if mode == "v3":
+                graph = self._load_graph()
+                if graph is None:
+                    st.error(
+                        "Grafo não encontrado. Rode `python -m utils.graphrag.build_graph` "
+                        "primeiro para gerá-lo (esse passo chama a API da OpenAI uma vez "
+                        "e cacheia o resultado em `graph_cache/`)."
+                    )
+
+        if st.session_state.vectordb is None:
             st.error("❌ Vector database não foi inicializado.")
+            return
+
+        if mode == "v3" and graph is None:
+            return  # já mostrou o erro na sidebar, não deixa conversar sem grafo
+
+        st.session_state.chat_history = chat(
+            st.session_state.chat_history,
+            st.session_state.vectordb,
+            mode=mode,
+            graph=graph,
+        )
+
+    @staticmethod
+    def _load_graph():
+        from utils.graphrag.graph_builder import load_graph
+
+        if "kg_graph" not in st.session_state:
+            try:
+                st.session_state.kg_graph = load_graph()
+            except FileNotFoundError:
+                st.session_state.kg_graph = None
+        return st.session_state.kg_graph
 
 
 if __name__ == "__main__":

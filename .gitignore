@@ -89,6 +89,12 @@ chroma/
 .venv/
 Vector_DB - Documents/
 
+# Scripts de debug
+app/debug_chunk_dilution.py
+app/debug_embeddings.py
+app/debug_retrieval.py
+app/rebuild_vectordb.py
+
 # pyenv
 #   For a library or package, you might want to ignore these files since the code is
 #   intended to run in multiple environments; otherwise, check them in:
